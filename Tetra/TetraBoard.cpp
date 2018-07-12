@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "TetraBoard.h"
+#include <vector>
 
 
-TetraBoard::TetraBoard():m_nColumns(5),m_nRows(5),m_nHeight(35),m_nWidth(35)
+TetraBoard::TetraBoard():m_nColumns(5),m_nRows(5),m_nHeight(100),m_nWidth(100)
 {}
 
 
@@ -15,7 +16,7 @@ TetraBoard::~TetraBoard()
 
 void TetraBoard::SetupBoard()
 {
-	if (m_arrBoard == NULL)
+	if (m_arrBoard.empty())
 		CreateBoard();
 }
 
@@ -23,42 +24,28 @@ void TetraBoard::SetupBoard()
 
 void TetraBoard::CreateBoard()
 {
-	if (m_arrBoard != NULL)
+	m_arrBoard.resize(m_nColumns);
+	if (!m_arrBoard.empty())
 		DeleteBoard();
-	m_arrBoard = new int*[m_nRows];
-	for (int row = 0; row < m_nRows; row++)
-	{
-		m_arrBoard[row] = new int[m_nColumns];
-		for (int col = 0; col < m_nColumns; col++)
-			m_arrBoard[row][col] = 0;
-	}
+	std::vector<int> filler(m_nRows);
+	fill(filler.begin(), filler.end(), 0);
+	for (int i = 0; i < m_nColumns; ++i)
+		m_arrBoard.push_back(filler);
+	filler.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void TetraBoard::DeleteBoard()
 {
-	if (m_arrBoard != NULL)
+	if (!m_arrBoard.empty())
 	{
-		for (int row = 0; row < m_nRows; row++)
-		{
-			if (m_arrBoard[row] != NULL)
-			{
-				delete[] m_arrBoard[row];
-				m_arrBoard[row] = NULL;
-			}
-		}
-		delete[] m_arrBoard;
-		m_arrBoard = NULL;
+		m_arrBoard.clear();
 	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int TetraBoard::IsEmpty(int row, int col)
+int TetraBoard::IsEmpty()
 {
-	if (row < 0 || row >= m_nRows || col < 0 || col >= m_nColumns)
-		return 0;
-	if (m_arrBoard[row][col] == 0)
-		return 1;
-	return 0;
+	return m_arrBoard.empty();
 }

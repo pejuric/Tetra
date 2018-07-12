@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 class TetraBoard
 {
 public:
@@ -8,13 +9,13 @@ public:
 	int ReturnOccupied();
 	void CreateBoard();
 	void DeleteBoard();
-	int IsEmpty(int row, int col);
+	int IsEmpty();
 	int GetWidth() { return m_nWidth; }
 	int GetHeight() { return m_nHeight; }
 	int GetColumns() { return m_nColumns; }
 	int GetRows() { return m_nRows; }
 private:
-	int** m_arrBoard;
+	std::vector<std::vector<int>> m_arrBoard;
 	int m_nWidth;
 	int m_nHeight;
 	int m_nColumns;
