@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-TetraBoard::TetraBoard():m_nColumns(6),m_nRows(5),m_nHeight(156),m_nWidth(206)
+TetraBoard::TetraBoard():m_nColumns(6),m_nRows(5),m_nWidth(165),m_nHeight(125)
 {}
 
 TetraBoard::~TetraBoard()
