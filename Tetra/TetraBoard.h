@@ -6,7 +6,7 @@ public:
 	TetraBoard();
 	~TetraBoard();
 	void SetupBoard();
-	int ReturnOccupied();
+	RECT GetBoardRect(int x, int y);
 	void CreateBoard();
 	void DeleteBoard();
 	int IsEmpty();
