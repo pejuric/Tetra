@@ -14,6 +14,7 @@ public:
 	int GetHeight() { return m_nHeight; }
 	int GetColumns() { return m_nColumns; }
 	int GetRows() { return m_nRows; }
+	int GetArrValue(int x, int y);
 private:
 	std::vector<std::vector<int>> m_arrBoard;
 	int m_nWidth;

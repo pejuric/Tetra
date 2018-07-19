@@ -208,6 +208,7 @@
     <None Include="res\Tetra.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\0.bmp" />
     <Image Include="res\1.bmp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </Image>

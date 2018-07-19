@@ -41,7 +41,9 @@ void TetraBoard::CreateBoard()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RECT TetraBoard::GetBoardRect(int x,int y)
 {
-		RECT cord;
+	RECT cord;
+	/*if (!m_arrBoard[x][y])
+		return cord;*/
 	try 
 	{
 		cord.left = x * m_nWidth;
@@ -64,4 +66,9 @@ void TetraBoard::DeleteBoard()
 int TetraBoard::IsEmpty()
 {
 	return m_arrBoard.empty();
+}
+
+int TetraBoard::GetArrValue(int x, int y)
+{
+	return m_arrBoard[x][y];
 }
