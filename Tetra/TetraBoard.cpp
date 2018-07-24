@@ -72,3 +72,13 @@ int TetraBoard::GetArrValue(int x, int y)
 {
 	return m_arrBoard[x][y];
 }
+
+bool TetraBoard::SetArrValue(int x, int y, int value)
+{
+	try {
+		m_arrBoard[x][y] = value;
+		return true;
+	}
+	catch (...) { return false; }
+
+}

@@ -15,6 +15,7 @@ public:
 	int GetColumns() { return m_nColumns; }
 	int GetRows() { return m_nRows; }
 	int GetArrValue(int x, int y);
+	bool SetArrValue(int x, int y, int value);
 private:
 	std::vector<std::vector<int>> m_arrBoard;
 	int m_nWidth;
