@@ -14,8 +14,8 @@ TetraBoard::~TetraBoard()
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TetraBoard::SetupBoard()
 {
-	if (m_arrBoard.empty())
-		CreateBoard();
+	m_arrBoard.clear();
+	CreateBoard();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TetraBoard::CreateBoard()
@@ -58,7 +58,6 @@ RECT TetraBoard::GetBoardRectFromClick(CPoint clickCord)
 	RECT cord;
 	int x, y;
 	x = clickCord.x / GetWidth(); y = clickCord.y / GetHeight();
-	return RECT();
 	try
 	{
 		cord.left = x * m_nWidth;
