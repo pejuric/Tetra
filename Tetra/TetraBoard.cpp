@@ -42,8 +42,6 @@ void TetraBoard::CreateBoard()
 RECT TetraBoard::GetBoardRect(int x,int y)
 {
 	RECT cord;
-	/*if (!m_arrBoard[x][y])
-		return cord;*/
 	try 
 	{
 		cord.left = x * m_nWidth;
@@ -54,6 +52,24 @@ RECT TetraBoard::GetBoardRect(int x,int y)
 	catch(...){}
 	return cord;
 }
+
+RECT TetraBoard::GetBoardRectFromClick(CPoint clickCord)
+{
+	RECT cord;
+	int x, y;
+	x = clickCord.x / GetWidth(); y = clickCord.y / GetHeight();
+	return RECT();
+	try
+	{
+		cord.left = x * m_nWidth;
+		cord.right = x * m_nWidth + m_nWidth;
+		cord.top = y * m_nHeight;
+		cord.bottom = y * m_nHeight + m_nHeight;
+	}
+	catch (...) {}
+	return cord;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TetraBoard::DeleteBoard()
 {
@@ -73,12 +89,7 @@ int TetraBoard::GetArrValue(int x, int y)
 	return m_arrBoard[x][y];
 }
 
-bool TetraBoard::SetArrValue(int x, int y, int value)
+void TetraBoard::SetArrValue(int x, int y, int value)
 {
-	try {
-		m_arrBoard[x][y] = value;
-		return true;
-	}
-	catch (...) { return false; }
-
+	m_arrBoard[x][y] = value;
 }

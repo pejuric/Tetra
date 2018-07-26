@@ -6,13 +6,16 @@ class Game
 {
 private:
 	int selected_Card;
-	int playerOnTurn;
-	TetraBoard m_board;
-	CTetraDoc* pDoc;
+	int gameState;
+	bool gameOver;
+//	CTetraDoc* pDoc;
 public:
+	TetraBoard m_board;
 	Game();
 	~Game();
-	bool isFieldFree(int x, int y);
-	bool selectCard();
-	bool placeCard();
+	void NewGame();
+	bool GameTick(CPoint cord);
+	bool IsFieldZero(int x, int y);
+	bool SelectCard(CPoint cord);
+	bool PlaceCard(CPoint cord);
 };
