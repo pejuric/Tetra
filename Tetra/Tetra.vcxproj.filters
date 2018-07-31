@@ -119,5 +119,56 @@
     <Image Include="res\0.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\16.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\17.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\18.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\19.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\20.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GB.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\GR.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap24.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cover.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\BlueWin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\RedWin.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stone.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

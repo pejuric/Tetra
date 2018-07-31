@@ -217,9 +217,19 @@
     <Image Include="res\10.bmp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </Image>
+    <Image Include="res\11.bmp" />
+    <Image Include="res\12.bmp" />
+    <Image Include="res\13.bmp" />
+    <Image Include="res\14.bmp" />
+    <Image Include="res\15.bmp" />
+    <Image Include="res\16.bmp" />
+    <Image Include="res\17.bmp" />
+    <Image Include="res\18.bmp" />
+    <Image Include="res\19.bmp" />
     <Image Include="res\2.bmp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </Image>
+    <Image Include="res\20.bmp" />
     <Image Include="res\3.bmp">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </Image>
@@ -242,6 +252,13 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
     </Image>
     <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\bitmap24.bmp" />
+    <Image Include="res\BlueWin.bmp" />
+    <Image Include="res\cover.bmp" />
+    <Image Include="res\GB.bmp" />
+    <Image Include="res\GR.bmp" />
+    <Image Include="res\RedWin.bmp" />
+    <Image Include="res\Stone.bmp" />
     <Image Include="res\Tetra.ico" />
     <Image Include="res\TetraDoc.ico" />
   </ItemGroup>

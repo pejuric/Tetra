@@ -70,6 +70,28 @@ RECT TetraBoard::GetBoardRectFromClick(CPoint clickCord)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+RECT TetraBoard::GetBoardWideRectFromPoint(CPoint clickCord)
+{
+	RECT cord;
+	int x, y;
+	x = clickCord.x / GetWidth(); y = clickCord.y / GetHeight();
+	try
+	{
+		cord.left = x * m_nWidth - m_nWidth;
+		cord.right = x * m_nWidth + m_nWidth + m_nWidth;
+		cord.top = y * m_nHeight - m_nHeight;
+		if (cord.top < 0)
+			cord.top = 0;
+		cord.bottom = y * m_nHeight + m_nHeight + m_nHeight;
+		if (cord.bottom > (m_nRows - 1)*m_nHeight)
+			cord.bottom = y * m_nHeight + m_nHeight;
+	}
+	catch (...) {}
+	return cord;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TetraBoard::DeleteBoard()
 {
 	if (!m_arrBoard.empty())

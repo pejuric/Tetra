@@ -8,6 +8,7 @@ public:
 	void SetupBoard();
 	RECT GetBoardRect(int x, int y);
 	RECT GetBoardRectFromClick(CPoint cord);
+	RECT GetBoardWideRectFromPoint(CPoint clickCord);
 	void CreateBoard();
 	void DeleteBoard();
 	int IsEmpty();
