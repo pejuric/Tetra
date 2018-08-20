@@ -40,20 +40,23 @@ void Game::NewGame()
 void Game::RedWin()
 {
 		m_board.SetArrValue(m_board.GetColumns()-1, 0, 26);
+		m_board.SetArrValue(0, 0, 26);
 }
 void Game::BlueWin()
 {
+	m_board.SetArrValue(m_board.GetColumns() - 1, 0, 25);
 		m_board.SetArrValue(0, 0, 25);
+}
+void Game::Draw()
+{
+	m_board.SetArrValue(m_board.GetColumns() - 1, 0, 28);
+	m_board.SetArrValue(0, 0, 28);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool Game::GameTick(CPoint cord)
 {
 	if (gameOver)
 	{
-		if (won < 0)
-			RedWin();
-		if (won > 0)
-			BlueWin();
 		return false;
 	}
 	switch(gameState)
@@ -252,7 +255,15 @@ bool Game::PlaceCard(CPoint cord)
 	
 	}
 	++placedCards;
-	if (placedCards == 10)
+	if (placedCards == 10) 
+	{
 		gameOver = true;
+		if (won < 0)
+			RedWin();
+		if (won > 0)
+			BlueWin();
+		if (won == 0)
+			Draw();
+	}
 	return true;
 }

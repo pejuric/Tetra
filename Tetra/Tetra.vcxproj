@@ -261,6 +261,7 @@
     <Image Include="res\bitmap24.bmp" />
     <Image Include="res\BlueWin.bmp" />
     <Image Include="res\cover.bmp" />
+    <Image Include="res\Draw.bmp" />
     <Image Include="res\GB.bmp" />
     <Image Include="res\GR.bmp" />
     <Image Include="res\RedWin.bmp" />

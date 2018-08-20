@@ -172,5 +172,8 @@
     <Image Include="res\Stone.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Draw.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

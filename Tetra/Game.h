@@ -19,6 +19,7 @@ public:
 	void NewGame();
 	void RedWin();
 	void BlueWin();
+	void Draw();
 	bool GameTick(CPoint cord);
 	bool IsFieldZero(int x, int y);
 	bool SelectCard(CPoint cord);
