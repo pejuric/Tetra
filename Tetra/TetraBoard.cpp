@@ -4,8 +4,15 @@
 #include <algorithm>
 
 
-TetraBoard::TetraBoard():m_nColumns(6),m_nRows(5),m_nWidth(165),m_nHeight(125)
-{}
+TetraBoard::TetraBoard()//:m_nColumns(6),m_nRows(5),m_nWidth(165),m_nHeight(125)
+{
+	const TCHAR* filename = _T(".\\Config.ini");
+	TCHAR* section = _T("board");
+	m_nColumns = GetPrivateProfileInt(section, _T("columns"), 6, filename);
+	m_nRows= GetPrivateProfileInt(section, _T("rows"), 5, filename);
+	m_nWidth= GetPrivateProfileInt(section, _T("width"), 165, filename);
+	m_nHeight= GetPrivateProfileInt(section, _T("height"), 125, filename);
+}
 
 TetraBoard::~TetraBoard()
 {
@@ -52,7 +59,7 @@ RECT TetraBoard::GetBoardRect(int x,int y)
 	catch(...){}
 	return cord;
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
 RECT TetraBoard::GetBoardRectFromClick(CPoint clickCord)
 {
 	RECT cord;
@@ -104,12 +111,12 @@ int TetraBoard::IsEmpty()
 {
 	return m_arrBoard.empty();
 }
-
+///////////////////////////////////////////////////////////////////////////////
 int TetraBoard::GetArrValue(int x, int y)
 {
 	return m_arrBoard[x][y];
 }
-
+///////////////////////////////////////////////////////////////////////////////
 void TetraBoard::SetArrValue(int x, int y, int value)
 {
 	m_arrBoard[x][y] = value;

@@ -6,10 +6,6 @@
 #include "Game.h"
 #include "time.h"
 
-#define down (x, y, x, y + 1)
-#define up (x, y, x, y - 1)
-#define left (x, y, x - 1, y)
-#define right (x, y, x + 1, y)
 
 Game::Game()
 {
@@ -19,6 +15,9 @@ Game::Game()
 	gameOver = false;
 	placedCards = 0;
 	won = 0;
+	const TCHAR* filename = _T(".\\Config.ini");
+	TCHAR* section = _T("roll");
+	chance = GetPrivateProfileInt(section, _T("chance"), 8, filename);
 }
 Game::~Game(){}
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +36,7 @@ void Game::NewGame()
 	m_board.SetArrValue(m_board.GetColumns()-2, 0, 27);
 	m_board.SetArrValue(m_board.GetColumns() - 2, m_board.GetRows() - 1, 27);
 }
+////////////////////////////////////////////////////////////////////////////////////////////
 void Game::RedWin()
 {
 		m_board.SetArrValue(m_board.GetColumns()-1, 0, 26);
@@ -109,9 +109,10 @@ bool Game::CheckForTheEnemy(int x1, int y1, int x2, int y2)
 		return true;
 	if (m_board.GetArrValue(x2, y2) == 0 || m_board.GetArrValue(x2, y2) == 27)
 		return true;
-	int myVal;
-	myVal = m_board.GetArrValue(x1, y1);
+	int myVal = m_board.GetArrValue(x1, y1);
 	int hisVal = m_board.GetArrValue(x2, y2);
+
+	//garrison normalisation for fight balance purposes
 	if (hisVal == 21) hisVal = 1;
 	if (hisVal == 22) hisVal = 6;
 
@@ -160,8 +161,8 @@ bool Game::RollForVictory(int myVal, int hisVal)
 		srand(time(NULL));
 	while (1)
 	{
-		us2 += rand() % 8;
-		them2 += rand() % 8;
+		us2 += rand() % chance;
+		them2 += rand() % chance;
 		if (us2 > them2)
 			return true;
 		if (us2 < them2)
@@ -185,26 +186,26 @@ bool Game::PlaceCard(CPoint cord)
 
 	switch(selected_Card)
 	{
-	case 1:CheckForTheEnemy down; break;
+	case 1:CheckForTheEnemy(x, y, x, y + 1); break;
 		case 2:
 		{
-			if (CheckForTheEnemy up)
-				CheckForTheEnemy down;
+			if (CheckForTheEnemy(x, y, x, y - 1))
+				CheckForTheEnemy(x, y, x, y + 1);
 		}break;
 
 		case 3:
 		{
-			if (CheckForTheEnemy up)
-				if (CheckForTheEnemy down)
-					CheckForTheEnemy right;
+			if (CheckForTheEnemy(x, y, x, y - 1))
+				if (CheckForTheEnemy(x, y, x, y + 1))
+					CheckForTheEnemy(x, y, x + 1, y);
 		}break;
 
 		case 4: 
 		{
-			if (CheckForTheEnemy up)
-				if (CheckForTheEnemy down)
-					if (CheckForTheEnemy left)
-						CheckForTheEnemy right;
+			if (CheckForTheEnemy(x, y, x, y - 1))
+				if (CheckForTheEnemy(x, y, x, y + 1))
+					if (CheckForTheEnemy(x, y, x - 1, y))
+						CheckForTheEnemy(x, y, x + 1, y);
 
 		} break;
 
@@ -212,41 +213,41 @@ bool Game::PlaceCard(CPoint cord)
 		{
 			if (CheckForTheEnemy(x, y, x + 1, y - 1))
 				if (CheckForTheEnemy(x, y, x + 1, y + 1))
-					if (CheckForTheEnemy up)
-						if (CheckForTheEnemy down)
-							if (CheckForTheEnemy left)
-								CheckForTheEnemy right;
+					if (CheckForTheEnemy(x, y, x, y - 1))
+						if (CheckForTheEnemy(x, y, x, y + 1))
+							if (CheckForTheEnemy(x, y, x - 1, y))
+								CheckForTheEnemy(x, y, x + 1, y);
 		} break;
-		case 6: CheckForTheEnemy up; break;
+		case 6: CheckForTheEnemy(x, y, x, y - 1); break;
 		case 7: 
 		{
-			if (CheckForTheEnemy up)
-				CheckForTheEnemy down;
+			if (CheckForTheEnemy(x, y, x, y - 1))
+				CheckForTheEnemy(x, y, x, y + 1);
 		} break;
 
 		case 8: 
 		{
-			if (CheckForTheEnemy up)
-				if (CheckForTheEnemy down)
-					CheckForTheEnemy left;
+			if (CheckForTheEnemy(x, y, x, y - 1))
+				if (CheckForTheEnemy(x, y, x, y + 1))
+					CheckForTheEnemy(x, y, x - 1, y);
 		} break;
 
 		case 9: 
 		{
-			if (CheckForTheEnemy up)
-				if (CheckForTheEnemy down)
-					if (CheckForTheEnemy left)
-						CheckForTheEnemy right;
+			if (CheckForTheEnemy(x, y, x, y - 1))
+				if (CheckForTheEnemy(x, y, x, y + 1))
+					if (CheckForTheEnemy(x, y, x - 1, y))
+						CheckForTheEnemy(x, y, x + 1, y);
 		} break;
 
 		case 10: 
 		{
 			if (CheckForTheEnemy(x, y, x - 1, y - 1))
 				if (CheckForTheEnemy(x, y, x - 1, y + 1))
-					if (CheckForTheEnemy up)
-						if (CheckForTheEnemy down)
-							if (CheckForTheEnemy left)
-								CheckForTheEnemy right;
+					if (CheckForTheEnemy(x, y, x, y - 1))
+						if (CheckForTheEnemy(x, y, x, y + 1))
+							if (CheckForTheEnemy(x, y, x - 1, y))
+								CheckForTheEnemy(x, y, x + 1, y);
 		} break;
 	
 	}

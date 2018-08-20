@@ -207,6 +207,12 @@
     <ResourceCompile Include="Tetra.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config.ini">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="ReadMe.md">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="res\Tetra.rc2" />
   </ItemGroup>
   <ItemGroup>

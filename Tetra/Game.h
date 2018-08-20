@@ -9,6 +9,7 @@ private:
 	int gameState;
 	int placedCards;
 	int won;
+	int chance;
 public:
 	bool gameStarted;
 	bool gameOver;

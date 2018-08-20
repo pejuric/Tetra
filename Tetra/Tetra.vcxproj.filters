@@ -75,6 +75,8 @@
     <None Include="res\Tetra.rc2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Config.ini" />
+    <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\TetraDoc.ico">
