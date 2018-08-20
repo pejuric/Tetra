@@ -59,22 +59,6 @@ RECT TetraBoard::GetBoardRect(int x,int y)
 	catch(...){}
 	return cord;
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////
-RECT TetraBoard::GetBoardRectFromClick(CPoint clickCord)
-{
-	RECT cord;
-	int x, y;
-	x = clickCord.x / GetWidth(); y = clickCord.y / GetHeight();
-	try
-	{
-		cord.left = x * m_nWidth;
-		cord.right = x * m_nWidth + m_nWidth;
-		cord.top = y * m_nHeight;
-		cord.bottom = y * m_nHeight + m_nHeight;
-	}
-	catch (...) {}
-	return cord;
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
