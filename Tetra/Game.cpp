@@ -18,6 +18,7 @@ Game::Game()
 	const TCHAR* filename = _T(".\\Config.ini");
 	TCHAR* section = _T("roll");
 	chance = GetPrivateProfileInt(section, _T("chance"), 8, filename);
+	srand(time(NULL));
 }
 Game::~Game(){}
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,28 +30,28 @@ void Game::NewGame()
 	gameOver = false;
 	placedCards = 0;
 	won = 0;
-	m_board.SetArrValue(1, 0, 27);
-	m_board.SetArrValue(2, 2, 27);
-	m_board.SetArrValue(3, 2, 27);
-	m_board.SetArrValue(1, m_board.GetRows() - 1, 27);
-	m_board.SetArrValue(m_board.GetColumns()-2, 0, 27);
-	m_board.SetArrValue(m_board.GetColumns() - 2, m_board.GetRows() - 1, 27);
+	m_board.SetArrValue(1, 0, STONE);
+	m_board.SetArrValue(2, 2, STONE);
+	m_board.SetArrValue(3, 2, STONE);
+	m_board.SetArrValue(1, m_board.GetRows() - 1, STONE);
+	m_board.SetArrValue(m_board.GetColumns()-2, 0, STONE);
+	m_board.SetArrValue(m_board.GetColumns() - 2, m_board.GetRows() - 1, STONE);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////
 void Game::RedWin()
 {
-		m_board.SetArrValue(m_board.GetColumns()-1, 0, 26);
-		m_board.SetArrValue(0, 0, 26);
+		m_board.SetArrValue(m_board.GetColumns()-1, 0, REDWIN);
+		m_board.SetArrValue(0, 0, REDWIN);
 }
 void Game::BlueWin()
 {
-	m_board.SetArrValue(m_board.GetColumns() - 1, 0, 25);
-		m_board.SetArrValue(0, 0, 25);
+	m_board.SetArrValue(m_board.GetColumns() - 1, 0, BLUEWIN);
+		m_board.SetArrValue(0, 0, BLUEWIN);
 }
 void Game::Draw()
 {
-	m_board.SetArrValue(m_board.GetColumns() - 1, 0, 28);
-	m_board.SetArrValue(0, 0, 28);
+	m_board.SetArrValue(m_board.GetColumns() - 1, 0, DRAW);
+	m_board.SetArrValue(0, 0, DRAW);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool Game::GameTick(CPoint cord)
@@ -100,7 +101,7 @@ bool Game::SelectCard(CPoint cord)
 		return false;
 
 	selected_Card = m_board.GetArrValue(x, y);
-	m_board.SetArrValue(x, y, selected_Card+10);
+	m_board.SetArrValue(x, y, selected_Card+11);
 	return true;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,25 +111,25 @@ bool Game::CheckForTheEnemy(int x1, int y1, int x2, int y2)
 	
 	if(x2<=0||x2>=(m_board.GetColumns()-1)|| y2 < 0 || y2 > (m_board.GetRows()-1))
 		return true;
-	if (m_board.GetArrValue(x2, y2) == 0 || m_board.GetArrValue(x2, y2) == 27)
+	if (m_board.GetArrValue(x2, y2) == 0 || m_board.GetArrValue(x2, y2) == STONE)
 		return true;
 	int myVal = m_board.GetArrValue(x1, y1);
 	int hisVal = m_board.GetArrValue(x2, y2);
 
 	//garrison normalisation for fight balance purposes
-	if (hisVal == 21) hisVal = 1;
-	if (hisVal == 22) hisVal = 6;
+	if (hisVal == GB) hisVal = 1;
+	if (hisVal == GR) hisVal = 6;
 
 	if (myVal > 5 && hisVal > 5)return true;
 	if (myVal < 6 && hisVal < 6)return true;
 	if (RollForVictory(myVal, hisVal)) 
 	{
 		if (myVal < 6) {
-			m_board.SetArrValue(x2, y2, 21);
+			m_board.SetArrValue(x2, y2, GB);
 			++won;
 		}
 		else {
-			m_board.SetArrValue(x2, y2, 22);
+			m_board.SetArrValue(x2, y2, GR);
 			--won;
 		}
 			return true;	
@@ -136,11 +137,11 @@ bool Game::CheckForTheEnemy(int x1, int y1, int x2, int y2)
 	else 
 	{
 		if (myVal < 6) {
-			m_board.SetArrValue(x1, y1, 22);
+			m_board.SetArrValue(x1, y1, GR);
 			--won;
 		}
 		else {
-			m_board.SetArrValue(x1, y1, 21);
+			m_board.SetArrValue(x1, y1, GB);
 			++won;
 		}return false;
 	}
@@ -161,7 +162,7 @@ bool Game::RollForVictory(int myVal, int hisVal)
 		them2 = hisVal + 5;
 		us2 = myVal;
 	}
-		srand(time(NULL));
+		
 	while (1)
 	{
 		us2 += rand() % chance;
